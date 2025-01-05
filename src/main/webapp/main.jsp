@@ -2,7 +2,6 @@
          pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="controller.*" %>
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -30,15 +29,14 @@
                 if (request.getParameter("page") != null) {
                     switch(Integer.parseInt(request.getParameter("page"))) {
                         case 0 : %> <%@ include file="accueil.jsp" %> <% break;
-                        case 1 : %> <%@ include file="offres.jsp" %> <% break;
-                        case 2 : %> <%@ include file="signin.jsp" %> <% break;
-                        case 3 : %> <%@ include file="login.jsp" %> <% break;
-                    }
-                } else {
-                    %> <%@ include file="accueil.jsp" %> <%;
-                }
+            case 1 : %> <%@ include file="offres.jsp" %> <% break;
+            case 2 : %> <%@ include file="signin.jsp" %> <% break;
+            case 3 : %> <%@ include file="login.jsp" %> <% break;
+        }
+        } else {
+        %> <%@ include file="accueil.jsp" %>
+            }
             %>
         </div>
     </body>
 </html>
-

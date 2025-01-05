@@ -30,6 +30,19 @@ public class Membre {
         this.is_admin = is_admin;
     }
 
+    public Membre() {
+        super();
+        this.idmembre = 0;
+        this.credit = 0;
+        this.nom = "";
+        this.prenom = "";
+        this.address = "";
+        this.mdp = "";
+        this.phone = "";
+        this.statut = "";
+        this.is_admin = true;
+    }
+
     public int getIdmembre() {
         return idmembre;
     }

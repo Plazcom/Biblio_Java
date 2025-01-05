@@ -5,7 +5,8 @@
   Time: 11:52 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%Membre unMembre = new Membre();%>
+<%@ page import="controller.*" %>
 <html>
     <head>
         <title>Title</title>
@@ -27,7 +28,7 @@
                     if (request.getParameter("SeConnecter") != null) {
                         String email = request.getParameter("email");
                         String mdp = request.getParameter("mdp");
-                        Membre unMem = controller.selectWhereMember(email, mdp);
+                        Membre unMem = controller.selectWhereMembre(email, mdp);
                         if (unMem != null) {
                             out.print("<br> Bienvenue "+unMem.getNom()+"<br> <a href='log_user.jsp?id="+unMem.getIdmembre()+"'>Se connecter</a>");
                             session.setAttribute("email", unMem.getAddress());

@@ -55,7 +55,7 @@ public class model {
 			if (desRes.next()) {
 				unMembre = new Membre(
 						desRes.getInt("idmembre"), desRes.getInt("credit"), desRes.getString("nom"),
-						desRes.getString("prenom"), desRes.getString("adresss"), desRes.getString("mdp"),
+						desRes.getString("prenom"), desRes.getString("adress"), desRes.getString("mdp"),
 						desRes.getString("phone"), desRes.getString("statut"), desRes.getBoolean("is_admin")
 				);
 			}
@@ -81,7 +81,7 @@ public class model {
 	}
 	
 	public static Membre selectWhereMembre (String email, String mdp) {
-		String req = "select * from membre where mail = '"+email+"' and mdp = '"+mdp+"';";
+		String req = "select * from membre where email = '"+email+"' and password = '"+mdp+"';";
 		Membre unMembre = null;
 		try {
 			maConnexion.seConnecter();
@@ -90,7 +90,7 @@ public class model {
 			if (desRes.next()) {
 				unMembre = new Membre(
 						desRes.getInt("idmembre"), desRes.getInt("credit"), desRes.getString("nom"),
-						desRes.getString("prenom"), desRes.getString("adresss"), desRes.getString("mdp"),
+						desRes.getString("prenom"), desRes.getString("address"), desRes.getString("password"),
 						desRes.getString("phone"), desRes.getString("statut"), desRes.getBoolean("is_admin")
 				);
 			}

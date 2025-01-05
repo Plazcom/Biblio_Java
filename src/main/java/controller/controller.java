@@ -8,6 +8,8 @@ public class controller {
 	public static void insertMembre (Membre unMembre) {
 		model.insertMembre(unMembre);
 	}
+	public static Membre selectWhereMembre (String email, String mdp) {
+		return model.selectWhereMembre(email, mdp);}
 	public static ArrayList<Membre> selectAllMembres () {
 		return model.selectAllMembres();
 	}
