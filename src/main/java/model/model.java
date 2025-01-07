@@ -12,7 +12,7 @@ public class model {
 	private static Connexion maConnexion = new Connexion("localhost", "bibliojava", "root", "root");
 	
 	public static void insertMembre (Membre unMembre) {
-		String req = "insert into member values (null, '"+unMembre.getLastname()+"','"+unMembre.getFirstname()+"','"+unMembre.getEmail()+"','"+unMembre.getPassword()+"','"+unMembre.getPhone()+"','"+unMembre.getStatus()+"','"+unMembre.getCredit()+"', false); ";
+		String req = "insert into member values (null, '"+unMembre.getLastname()+"','"+unMembre.getFirstname()+"','"+unMembre.getEmail()+"','"+unMembre.getPhone()+"','"+unMembre.getStatus()+"','"+unMembre.getPassword()+"','"+unMembre.getCredit()+"', false); ";
 		try {
 			maConnexion.seConnecter();
 			Statement unStat = maConnexion.getMaConnexion().createStatement();
@@ -79,7 +79,7 @@ public class model {
 		return unMembre;
 	}
 	public static void deleteMembre (int idmembre) {
-		String req = "delete from membre where idmembre= "+idmembre+";";
+		String req = "delete from membre where idmember= "+idmembre+";";
 		try {
             maConnexion.seConnecter();
             Statement unStat = maConnexion.getMaConnexion().createStatement();
@@ -93,7 +93,7 @@ public class model {
 	}
 	
 	public static Membre selectWhereMembre (String email, String mdp) {
-		String req = "select * from member where mail = '"+email+"' and mdp = '"+mdp+"';";
+		String req = "select * from member where email = '"+email+"' and password = '"+mdp+"';";
 		Membre unMembre = null;
 		try {
 			maConnexion.seConnecter();

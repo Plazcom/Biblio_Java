@@ -13,10 +13,10 @@
         <section id="login">
             <form method="post" class="input">
                 <tr> <td> Mail </td>
-                    <td> <input type="email" name="email" value='<%= (unMembre != null)?unMembre.getAddress():"" %>'></td>
+                    <td> <input type="email" name="email" value='<%= (unMembre != null)?unMembre.getEmail():"" %>'></td>
                 </tr>
                 <tr> <td> Mot de passe </td>
-                    <td> <input type="password" name="mdp" value='<%= (unMembre != null)?unMembre.getMdp():"" %>'></td>
+                    <td> <input type="password" name="mdp" value='<%= (unMembre != null)?unMembre.getPassword():"" %>'></td>
                 </tr>
                 <tr> <td> </td>
                     <td> <input type="submit" name='SeConnecter' value = 'Soumettre'></td>
@@ -28,9 +28,9 @@
                         String mdp = request.getParameter("mdp");
                         Membre unMem = controller.selectWhereMembre(email, mdp);
                         if (unMem != null) {
-                            out.print("<br> Bienvenue "+unMem.getNom()+"<br> <a href='log_user.jsp?id="+unMem.getIdmembre()+"'>Se connecter</a>");
-                            session.setAttribute("email", unMem.getAddress());
-                            session.setAttribute("nom", unMem.getNom());
+                            out.print("<br> Bienvenue "+unMem.getFirstname()+"<br> <a href='log_user.jsp?id="+unMem.getIdmember()+"'>Se connecter</a>");
+                            session.setAttribute("email", unMem.getEmail());
+                            session.setAttribute("nom", unMem.getFirstname());
                         } else {
                             out.print("<br> Veuillez vérifier vos identifiants.");
                         }
