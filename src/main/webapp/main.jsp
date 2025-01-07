@@ -3,7 +3,8 @@
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="controller.*" %>
 
-<%Membre unMembre = null;%>
+<%Membre unMembre = null;
+%>
 <!DOCTYPE html>
 <html>
 <head>

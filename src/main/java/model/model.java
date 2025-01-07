@@ -120,7 +120,7 @@ public class model {
 		return unMembre;
 	}
 	public static void updateMembre (Membre unMembre) {
-		String req = "Update member set lastname= '"+unMembre.getLastname()+"', firstname= '"+unMembre.getFirstname()+"', email= '"+unMembre.getEmail()+"', status= '"+unMembre.getStatus()+"', credit= '"+unMembre.getCredit()+"' where idmember= "+unMembre.getIdmember()+"; ";
+		String req = "Update member set lastname= '"+unMembre.getLastname()+"', firstname= '"+unMembre.getFirstname()+"', email= '"+unMembre.getEmail()+"', status= '"+unMembre.getStatus()+"', phone= '"+unMembre.getPhone()+"', password= '"+unMembre.getPassword()+"', credit= '"+unMembre.getCredit()+"' where idmember= "+unMembre.getIdmember()+"; ";
 		try {
 			maConnexion.seConnecter();
 			Statement unStat = maConnexion.getMaConnexion().createStatement();

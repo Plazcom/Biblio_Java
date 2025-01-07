@@ -42,13 +42,12 @@
             unePage = Integer.parseInt(request.getParameter("page"));
         } else {
             unePage = 1;
-        }
-    %>
-    <% if (unePage == 1) {
-        if (request.getParameter("id") != null) {
             id = Integer.parseInt(request.getParameter("id"));
             unMembre = controller.selectWhereMembreWithId(id);
         }
+    %>
+    <%
+        if (unePage == 1) {
         ArrayList<Book> lesBook = controller.selectAllBooks();
         String chaineBooks = "";
         chaineBooks += "<h2>Nos Livres</h2>";
@@ -71,6 +70,8 @@
         out.print(chaineBooks);
     } else if (unePage == 2) {
         %> <%@ include file="offres_log.jsp" %> <%
+    } else if (unePage == 4) {
+%> <%@ include file="profil.jsp" %> <%
     }
     %>
     <% if (request.getParameter("action") != null) {
