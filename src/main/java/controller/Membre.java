@@ -1,94 +1,87 @@
 package controller;
 
 public class Membre {
-    private int idmembre, credit;
-    private String nom, prenom, address, mdp, phone, statut;
+    private int idmember, credit;
+    private String lastname, firstname, email, password, phone, status;
     private Boolean is_admin;
-    public Membre(int idmembre, int credit, String nom, String prenom, String address, String mdp, String phone, String statut, Boolean is_admin) {
+
+    public Membre(int idmember, String lastname, String firstname, String email, String password, String phone, String status, int credit, Boolean is_admin) {
         super();
-        this.idmembre = idmembre;
-        this.credit = credit;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.address = address;
-        this.mdp = mdp;
+        this.idmember = idmember;
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.email = email;
+        this.password = password;
         this.phone = phone;
-        this.statut = statut;
+        this.status = status;
+        this.credit = credit;
         this.is_admin = is_admin;
     }
 
-    public Membre(int credit, String nom, String prenom, String address, String mdp, String phone, String statut, Boolean is_admin) {
+    public Membre(String lastname, String firstname, String email, String password, String phone, String status, int credit, Boolean is_admin) {
         super();
-        this.idmembre = 0;
-        this.credit = credit;
-        this.nom = nom;
-        this.prenom = prenom;
-        this.address = address;
-        this.mdp = mdp;
+        this.idmember = 0;
+        this.lastname = lastname;
+        this.firstname = firstname;
+        this.email = email;
+        this.password = password;
         this.phone = phone;
-        this.statut = statut;
+        this.status = status;
+        this.credit = credit;
         this.is_admin = is_admin;
     }
 
     public Membre() {
         super();
-        this.idmembre = 0;
-        this.credit = 0;
-        this.nom = "";
-        this.prenom = "";
-        this.address = "";
-        this.mdp = "";
+        this.idmember = 0;
+        this.lastname = "";
+        this.firstname = "";
+        this.email = "";
+        this.password = "";
         this.phone = "";
-        this.statut = "";
+        this.status = "";
+        this.credit = 0;
         this.is_admin = true;
     }
 
-    public int getIdmembre() {
-        return idmembre;
+    public int getIdmember() {
+        return idmember;
     }
 
-    public void setIdmembre(int idmembre) {
-        this.idmembre = idmembre;
+    public void setIdmember(int idmember) {
+        this.idmember = idmember;
     }
 
-    public int getCredit() {
-        return credit;
+    public String getLastname() {
+        return lastname;
     }
 
-    public void setCredit(int credit) {
-        this.credit = credit;
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
     }
 
-    public String getNom() {
-        return nom;
+    public String getFirstname() {
+        return firstname;
     }
 
-    public void setNom(String nom) {
-        this.nom = nom;
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
     }
 
-    public String getPrenom() {
-        return prenom;
+    public String getEmail() {
+        return email;
     }
 
-    public void setPrenom(String prenom) {
-        this.prenom = prenom;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
-    public String getAddress() {
-        return address;
+    public String getPassword() {
+        return password;
     }
 
-    public void setAddress(String address) {
-        this.address = address;
-    }
-
-    public String getMdp() {
-        return mdp;
-    }
-
-    public void setMdp(String mdp) {
-        this.mdp = mdp;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     public String getPhone() {
@@ -99,12 +92,20 @@ public class Membre {
         this.phone = phone;
     }
 
-    public String getStatut() {
-        return statut;
+    public String getStatus() {
+        return status;
     }
 
-    public void setStatut(String statut) {
-        this.statut = statut;
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public int getCredit() {
+        return credit;
+    }
+
+    public void setCredit(int credit) {
+        this.credit = credit;
     }
 
     public Boolean getIs_admin() {

@@ -12,7 +12,7 @@ public class model {
 	private static Connexion maConnexion = new Connexion("localhost", "bibliojava", "root", "root");
 	
 	public static void insertMembre (Membre unMembre) {
-		String req = "insert into member values (null, '"+unMembre.getNom()+"','"+unMembre.getPrenom()+"','"+unMembre.getAddress()+"','"+unMembre.getPhone()+"','"+unMembre.getStatut()+"','"+unMembre.getMdp()+"','"+unMembre.getCredit()+"', false); ";
+		String req = "insert into member values (null, '"+unMembre.getLastname()+"','"+unMembre.getFirstname()+"','"+unMembre.getEmail()+"','"+unMembre.getPassword()+"','"+unMembre.getPhone()+"','"+unMembre.getStatus()+"','"+unMembre.getCredit()+"', false); ";
 		try {
 			maConnexion.seConnecter();
 			Statement unStat = maConnexion.getMaConnexion().createStatement();
@@ -32,10 +32,17 @@ public class model {
 			ResultSet desRes = unStat.executeQuery(req);
 			while (desRes.next()) {
 				Membre unMembre = new Membre(
-						desRes.getInt("idmembre"), desRes.getInt("credit"), desRes.getString("nom"),
-						desRes.getString("prenom"), desRes.getString("adresss"), desRes.getString("mdp"),
-						desRes.getString("phone"), desRes.getString("statut"), desRes.getBoolean("is_admin")
+						desRes.getInt("idmember"),
+						desRes.getString("lastname"),
+						desRes.getString("firstname"),
+						desRes.getString("email"),
+						desRes.getString("password"),
+						desRes.getString("phone"),
+						desRes.getString("status"),
+						desRes.getInt("credit"),
+						desRes.getBoolean("is_admin")
 				);
+
 				lesMembres.add(unMembre);
 			}
 			unStat.close();
@@ -54,9 +61,15 @@ public class model {
 			ResultSet desRes = unStat.executeQuery(req);
 			if (desRes.next()) {
 				unMembre = new Membre(
-						desRes.getInt("idmembre"), desRes.getInt("credit"), desRes.getString("nom"),
-						desRes.getString("prenom"), desRes.getString("adress"), desRes.getString("mdp"),
-						desRes.getString("phone"), desRes.getString("statut"), desRes.getBoolean("is_admin")
+						desRes.getInt("idmember"),
+						desRes.getString("lastname"),
+						desRes.getString("firstname"),
+						desRes.getString("email"),
+						desRes.getString("password"),
+						desRes.getString("phone"),
+						desRes.getString("status"),
+						desRes.getInt("credit"),
+						desRes.getBoolean("is_admin")
 				);
 			}
 			unStat.close();
@@ -89,9 +102,15 @@ public class model {
 			ResultSet desRes = unStat.executeQuery(req);
 			if (desRes.next()) {
 				unMembre = new Membre(
-						desRes.getInt("idmembre"), desRes.getInt("credit"), desRes.getString("nom"),
-						desRes.getString("prenom"), desRes.getString("address"), desRes.getString("password"),
-						desRes.getString("phone"), desRes.getString("statut"), desRes.getBoolean("is_admin")
+						desRes.getInt("idmember"),
+						desRes.getString("lastname"),
+						desRes.getString("firstname"),
+						desRes.getString("email"),
+						desRes.getString("password"),
+						desRes.getString("phone"),
+						desRes.getString("status"),
+						desRes.getInt("credit"),
+						desRes.getBoolean("is_admin")
 				);
 			}
 			unStat.close();
@@ -102,7 +121,7 @@ public class model {
 		return unMembre;
 	}
 	public static void updateMembre (Membre unMembre) {
-		String req = "Update member set lastname= '"+unMembre.getNom()+"', firstname= '"+unMembre.getPrenom()+"', mail= '"+unMembre.getAddress()+"', statut= '"+unMembre.getStatut()+"', credit= '"+unMembre.getCredit()+"' where idmember= "+unMembre.getIdmembre()+"; ";
+		String req = "Update member set lastname= '"+unMembre.getLastname()+"', firstname= '"+unMembre.getFirstname()+"', email= '"+unMembre.getEmail()+"', status= '"+unMembre.getStatus()+"', credit= '"+unMembre.getCredit()+"' where idmember= "+unMembre.getIdmember()+"; ";
 		try {
 			maConnexion.seConnecter();
 			Statement unStat = maConnexion.getMaConnexion().createStatement();
@@ -114,7 +133,7 @@ public class model {
 		}
 	}
 	public static  ArrayList<Membre> selectLikeMembres(String filtre) {
-		String req = "select * from member where lastname like '%"+filtre+"%' or fistname like '%"+filtre+"%' or mail like '%"+filtre+"%' or phone like '%"+filtre+"%' or statut like '%"+filtre+"%';";
+		String req = "select * from member where lastname like '%"+filtre+"%' or fistname like '%"+filtre+"%' or email like '%"+filtre+"%' or phone like '%"+filtre+"%' or status like '%"+filtre+"%';";
 		ArrayList<Membre> lesMembres = new ArrayList<Membre>();
 		try {
 			maConnexion.seConnecter();
@@ -122,9 +141,15 @@ public class model {
 			ResultSet desRes = unStat.executeQuery(req);
 			while (desRes.next()) {
 				Membre unMembre = new Membre(
-						desRes.getInt("idmembre"), desRes.getInt("credit"), desRes.getString("nom"),
-						desRes.getString("prenom"), desRes.getString("adresss"), desRes.getString("mdp"),
-						desRes.getString("phone"), desRes.getString("statut"), desRes.getBoolean("is_admin")
+						desRes.getInt("idmember"),
+						desRes.getString("lastname"),
+						desRes.getString("firstname"),
+						desRes.getString("email"),
+						desRes.getString("password"),
+						desRes.getString("phone"),
+						desRes.getString("status"),
+						desRes.getInt("credit"),
+						desRes.getBoolean("is_admin")
 				);
 				lesMembres.add(unMembre);
 			}
