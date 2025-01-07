@@ -59,7 +59,7 @@
             chaineBooks += "<td>"+unBook.getTitle()+"</td>";
             chaineBooks += "<td>"+unBook.getFirst_sentence()+"</td>";
             chaineBooks += "<td>"+unBook.getPrice()+"</td>";
-            if (controller.selectWhereLoan(unBook.getIdbook(), id) == null) {
+            if (controller.selectWhereLoan(id, unBook.getIdbook()) == null) {
                 chaineBooks += "<td> <a href= 'log_user.jsp?page=1&action=emprunter&idbook="+unBook.getIdbook()+"'> EMPRUNTER </a> </td>";
             } else {
                 chaineBooks += "<td> Vous avez emprunte ce livre </td>";
@@ -79,8 +79,16 @@
         idbook = Integer.parseInt(request.getParameter("idbook"));
         Date date = new Date();
         Loan leLoan = new Loan(id, idbook, date.toString());
-        controller.insertLoan(leLoan);
-        response.sendRedirect("log_user.jsp?page=1");
+        Membre user = controller.selectWhereMembreWithId(id);
+        Book book = controller.selectWhereBookWithId(idbook);
+        if (book.getPrice() > user.getCredit()) {
+            out.print("Vous n'avez pas assez de credit pour emprunter ce livre !");
+        } else {
+            user.setCredit((user.getCredit()) - book.getPrice());
+            controller.insertLoan(leLoan);
+            controller.updateMembre(user);
+            response.sendRedirect("log_user.jsp?page=1");
+        }
     }
 %>
 </center>
