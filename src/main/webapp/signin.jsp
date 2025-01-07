@@ -30,6 +30,13 @@
                     <tr> <td> Mot de passe </td>
                         <td> <input type="password" name="mdp" value='<%= (unMembre != null)?unMembre.getPassword():"" %>'></td>
                     </tr>
+                    <tr> <td> Status </td>
+                        <td><select name="monselect">
+                            <option value="etudiant">Etudiant</option>
+                            <option value="adulte" selected>Adulte</option>
+                            <option value="senior">Senior</option>
+                        </select></td>
+                    </tr>
                     <tr> <td> </td>
                         <td> <input type="submit" <%= (unMembre != null)? " name='Modifier' value='Modifier'" :
                         "name='Valider' value = 'Valider' "%>></td>
@@ -43,8 +50,9 @@
                         String adresse = request.getParameter("adresse");
                         String phone = request.getParameter("phone");
                         String mdp = request.getParameter("mdp");
+                        String status = request.getParameter("monselect");
 
-                        Membre unMem = new Membre(nom, prenom, adresse, mdp, phone, "none", 0, false);
+                        Membre unMem = new Membre(nom, prenom, adresse, mdp, phone, status, 0, false);
                         controller.insertMembre(unMem);
                         out.print("<br> Compte créé");
                     }
@@ -55,10 +63,11 @@
                         String adresse = request.getParameter("adresse");
                         String phone = request.getParameter("phone");
                         String mdp = request.getParameter("mdp");
+                        String status = request.getParameter("monselect");
                         int idmembre = unMembre.getIdmember();
 
-                        Membre unMem = new Membre(idmembre, nom, prenom, adresse, mdp, phone, "none", credit, false);
-                        controller.updateMembre(unMembre);
+                        Membre unMem = new Membre(idmembre, nom, prenom, adresse, mdp, phone, status, credit, false);
+                        controller.updateMembre(unMem);
                         response.sendRedirect("log_user.jsp?page=2");
                     }
                 %>

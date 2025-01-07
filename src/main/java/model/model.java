@@ -79,7 +79,7 @@ public class model {
 		return unMembre;
 	}
 	public static void deleteMembre (int idmembre) {
-		String req = "delete from membre where idmember= "+idmembre+";";
+		String req = "delete from member where idmember= "+idmembre+";";
 		try {
             maConnexion.seConnecter();
             Statement unStat = maConnexion.getMaConnexion().createStatement();
