@@ -27,7 +27,7 @@
                 </ul>
             </nav>
         </header>
-        <div class="hero_wrapper">
+        <div>
             <%
                 if (request.getParameter("page") != null) {
                     switch(Integer.parseInt(request.getParameter("page"))) {

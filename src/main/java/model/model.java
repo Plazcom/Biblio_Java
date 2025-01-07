@@ -5,7 +5,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-import controller.Membre;
+import controller.*;
 
 
 public class model {
@@ -52,7 +52,7 @@ public class model {
 		return lesMembres;
 	}
 	public static Membre selectWhereMembreWithId (int idmembre) {
-		String req = "select * from membre where idmember ="+idmembre+";";
+		String req = "select * from member where idmember ="+idmembre+";";
 		Membre unMembre = null;
 		try {
 			maConnexion.seConnecter();
@@ -158,5 +158,121 @@ public class model {
 			System.out.println("Erreur d'execution : "+req);
 		}
 		return lesMembres;
+	}
+
+	// Book Part //
+	public static void insertBook (Book unBook) {
+		String req = "insert into book values (null, '"+unBook.getTitle()+"','"+unBook.getFirst_sentence()+"','"+unBook.getImage_url()+"','"+unBook.getIs_loan()+"','"+unBook.getPrice()+"';";
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			unStat.execute(req);
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+	}
+
+	public static  ArrayList<Book> selectAllBooks() {
+		String req = "select * from book ;";
+		ArrayList<Book> lesBooks = new ArrayList<Book>();
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			ResultSet desRes = unStat.executeQuery(req);
+			while (desRes.next()) {
+				Book unBook = new Book(
+						desRes.getInt("idbook"),
+						desRes.getInt("price"),
+						desRes.getString("title"),
+						desRes.getString("first_sentence"),
+						desRes.getString("image_url"),
+						desRes.getBoolean("is_loan")
+				);
+				lesBooks.add(unBook);
+			}
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+		return lesBooks;
+	}
+
+	public static Book selectWhereBookWithId (int idbook) {
+		String req = "select * from book where idbook ="+idbook+";";
+		Book unBook = null;
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			ResultSet desRes = unStat.executeQuery(req);
+			if (desRes.next()) {
+				unBook = new Book(
+						desRes.getInt("idbook"),
+						desRes.getInt("price"),
+						desRes.getString("title"),
+						desRes.getString("first_sentence"),
+						desRes.getString("image_url"),
+						desRes.getBoolean("is_loan")
+				);
+			}
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+		return unBook;
+	}
+
+	public static void deleteBook (int idbook) {
+		String req = "delete from book where idbook= "+idbook+";";
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			unStat.executeUpdate(req);
+			unStat.close();
+			maConnexion.seDeconnecter();
+		}
+		catch (SQLException exp) {
+			System.out.println("Erreur d'execution : " + req);
+		}
+	}
+
+	// Loan Part //
+	public static void insertLoan (Loan unLoan) {
+		String req = "insert into loan values ("+unLoan.getIdmember()+","+unLoan.getIdbook()+",'"+unLoan.getLoan_date()+"',"+unLoan.getIs_return()+");";
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			unStat.execute(req);
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+	}
+
+	public static Loan selectWhereLoan (int idmember, int idbook) {
+		String req = "select * from loan where idmember = "+idmember+" and idbook = "+idbook+";";
+		Loan unLoan = null;
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			ResultSet desRes = unStat.executeQuery(req);
+			if (desRes.next()) {
+				unLoan = new Loan(
+						desRes.getInt("idmember"),
+						desRes.getInt("idbook"),
+						desRes.getString("loan_date"),
+						desRes.getBoolean("is_return")
+				);
+			}
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+		return unLoan;
 	}
 }

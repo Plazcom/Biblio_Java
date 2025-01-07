@@ -54,7 +54,7 @@
 
                         Membre unMem = new Membre(nom, prenom, adresse, mdp, phone, status, 0, false);
                         controller.insertMembre(unMem);
-                        out.print("<br> Compte créé");
+                        out.print("<br> Compte cree");
                     }
                     if (request.getParameter("Modifier") != null) {
                         int credit = unMembre.getCredit();

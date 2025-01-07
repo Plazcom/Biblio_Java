@@ -158,3 +158,10 @@ input {
 table {
     width: 60%;
 }
+
+.cover_img {
+    height: 100px;
+    margin: 0px;
+    width: auto;
+    padding: 0px;
+}

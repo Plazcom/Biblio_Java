@@ -10,6 +10,8 @@ public class controller {
 	}
 	public static Membre selectWhereMembre (String email, String password) {
 		return model.selectWhereMembre(email, password);}
+	public static Membre selectWhereMembreWithId (int idmembre) {
+		return model.selectWhereMembreWithId(idmembre);}
 	public static ArrayList<Membre> selectAllMembres () {
 		return model.selectAllMembres();
 	}
@@ -22,4 +24,24 @@ public class controller {
 	public static void updateMembre (Membre unMembre) {
 		model.updateMembre(unMembre);
 	}
+
+	// Book Part //
+	public static void insertBook (Book unBook) {
+		model.insertBook(unBook);
+	}
+	public static ArrayList<Book> selectAllBooks () {
+		return model.selectAllBooks();
+	}
+	public static void deleteBook (int idbook) {
+		model.deleteBook(idbook);
+	}
+	public static Book selectWhereBookWithId (int idbook) {
+		return model.selectWhereBookWithId(idbook);}
+
+	// Loan Part //
+	public static void insertLoan (Loan unLoan) {
+		model.insertLoan(unLoan);
+	}
+	public static Loan selectWhereLoan (int idmember, int idbook) {
+		return model.selectWhereLoan(idmember, idbook);}
 }

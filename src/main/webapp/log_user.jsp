@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page import="controller.*" %>
+<%@ page import="java.util.*" %>
+
+<%Membre unMembre = null;%>
 <html>
 <head>
     <title>Title</title>
@@ -25,7 +29,56 @@
                 <li><a href='main.jsp?page=1' class="nav-link">Deconnexion</a></li>
             </ul>
         </nav>
-</header>
+    </header>
+    <%!
+        int unePage;
+        int id;
+        int idbook;
+        String action = "";
+    %>
+    <%
+        if (request.getParameter("page") != null) {
+            unePage = Integer.parseInt(request.getParameter("page"));
+        } else {
+            unePage = 1;
+        }
+    %>
+    <% if (unePage == 1) {
+        if (request.getParameter("id") != null) {
+            id = Integer.parseInt(request.getParameter("id"));
+            unMembre = controller.selectWhereMembreWithId(id);
+        }
+        ArrayList<Book> lesBook = controller.selectAllBooks();
+        String chaineBooks = "";
+        chaineBooks += "<h2>Nos Livres</h2>";
+        chaineBooks += "<table border = '1'>";
+        chaineBooks += "<tr> <td> Couverture </td> <td> Titre </td> <td> Resume </td> <td> Prix </td></tr>";
+        for (Book unBook : lesBook) {
+            chaineBooks += "<tr>";
+            chaineBooks += "<td><img class='cover_img' src='"+unBook.getImage_url()+"' alt='"+unBook.getTitle()+"'></td>";
+            chaineBooks += "<td>"+unBook.getTitle()+"</td>";
+            chaineBooks += "<td>"+unBook.getFirst_sentence()+"</td>";
+            chaineBooks += "<td>"+unBook.getPrice()+"</td>";
+            if (controller.selectWhereLoan(unBook.getIdbook(), id) == null) {
+                chaineBooks += "<td> <a href= 'log_user.jsp?page=1&action=emprunter&idbook="+unBook.getIdbook()+"'> EMPRUNTER </a> </td>";
+            } else {
+                chaineBooks += "<td> Vous avez emprunte ce livre </td>";
+            }
+            chaineBooks += "</tr>";
+        }
+        chaineBooks += "</table>";
+        out.print(chaineBooks);
+    }
+    %>
+    <% if (request.getParameter("action") != null) {
+        action = request.getParameter("action");
+        idbook = Integer.parseInt(request.getParameter("idbook"));
+        Date date = new Date();
+        Loan leLoan = new Loan(id, idbook, date.toString());
+        controller.insertLoan(leLoan);
+        response.sendRedirect("log_user.jsp?page=1");
+    }
+%>
 </center>
 </body>
 </html>
