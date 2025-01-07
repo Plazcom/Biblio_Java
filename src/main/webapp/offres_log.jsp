@@ -11,6 +11,9 @@
 </head>
 <body>
 <center>
+        <%!
+        int idoffre;
+    %>
     <%
         ArrayList<Subscription> lesSubscriptions = controller.selectAllSubscriptions();
         String chaineSubs = "";
@@ -22,11 +25,29 @@
             chaineSubs += "<td>"+unSub.getName()+"</td>";
             chaineSubs += "<td>"+unSub.getPrice()+" Euros</td>";
             chaineSubs += "<td>"+unSub.getCredit()+"</td>";
+            if (controller.selectWhereIs_subscribe(id, unSub.getIdsubscription()) == null) {
+                chaineSubs += "<td> <a href= 'log_user.jsp?page=2&sub=sub&idoffre="+unSub.getIdsubscription()+"'> S'ABONNER </a> </td>";
+            } else {
+                chaineSubs += "<td> Vous etes deja abonne a cette offre </td>";
+            }
             chaineSubs += "</tr>";
         }
         chaineSubs += "</table>";
         out.print(chaineSubs);
     %>
+<% if (request.getParameter("sub") != null) {
+    action = request.getParameter("sub");
+    idoffre = Integer.parseInt(request.getParameter("idoffre"));
+    Date date = new Date();
+    int day = date.getDay();
+    Is_subscribe leIs_subscribe = new Is_subscribe(id, idoffre, Integer.toString(day));
+    Membre user = controller.selectWhereMembreWithId(id);
+    Subscription sub = controller.selectWhereSubscriptionWithId(idoffre);
+    user.setCredit((user.getCredit()) + sub.getCredit());
+    controller.insertIs_subscribe(leIs_subscribe);
+    controller.updateMembre(user);
+    response.sendRedirect("log_user.jsp?page=2");
+    }%>
 </center>
 </body>
 </html>

@@ -61,7 +61,8 @@ create table book_categorie (
 create table is_subscribe (
     idmember int not null,
     idsubscription int not null,
-    primary key (idmember, idsubscription),
+    subscribe_date varchar(255),
+    primary key (idmember, idsubscription, subscribe_date),
     foreign key (idmember) references member(idmember),
     foreign key (idsubscription) references subscription(idsubscription)
 );

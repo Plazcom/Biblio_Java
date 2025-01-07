@@ -54,4 +54,14 @@ public class controller {
 	public static ArrayList<Subscription> selectAllSubscriptions () {
 		return model.selectAllSubscriptions();
 	}
+
+	// Is_subscribe Part //
+	public static void insertIs_subscribe (Is_subscribe unIs_subscribe) {
+		model.insertIs_subscribe(unIs_subscribe);
+	}
+	public static ArrayList<Is_subscribe> selectAllIs_subscribes () {
+		return model.selectAllIs_subscribes();
+	}
+	public static Is_subscribe selectWhereIs_subscribe (int idmember, int idsubscription) {
+		return model.selectWhereIs_subscribe(idmember, idsubscription);}
 }

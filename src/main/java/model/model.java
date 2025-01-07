@@ -335,4 +335,61 @@ public class model {
 		}
 		return unSubscription;
 	}
+
+	// Is_subscribe Part //
+	public static void insertIs_subscribe (Is_subscribe unIs_subscribe) {
+		String req = "insert into is_subscribe values ("+unIs_subscribe.getIdmember()+","+unIs_subscribe.getIdsubscription()+",'"+unIs_subscribe.getSubscribe_date()+"');";
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			unStat.execute(req);
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+	}
+	public static  ArrayList<Is_subscribe> selectAllIs_subscribes () {
+		String req = "select * from is_subscribe;";
+		ArrayList<Is_subscribe> lesIs_subscribes = new ArrayList<Is_subscribe>();
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			ResultSet desRes = unStat.executeQuery(req);
+			while (desRes.next()) {
+				Is_subscribe unIs_subscribe = new Is_subscribe(
+						desRes.getInt("idmember"),
+						desRes.getInt("idsubscription"),
+						desRes.getString("subscribe_date")
+				);
+				lesIs_subscribes.add(unIs_subscribe);
+			}
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+		return lesIs_subscribes;
+	}
+	public static Is_subscribe selectWhereIs_subscribe (int idmember, int idsubscription) {
+		String req = "select * from is_subscribe where idmember = "+idmember+" and idsubscription = "+idsubscription+";";
+		Is_subscribe unIs_subscribe = null;
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			ResultSet desRes = unStat.executeQuery(req);
+			if (desRes.next()) {
+				unIs_subscribe = new Is_subscribe(
+						desRes.getInt("idmember"),
+						desRes.getInt("idsubscription"),
+						desRes.getString("subscribe_date")
+				);
+			}
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+		return unIs_subscribe;
+	}
 }
