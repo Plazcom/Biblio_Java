@@ -5,8 +5,6 @@
   Time: 11:52 AM
   To change this template use File | Settings | File Templates.
 --%>
-<%Membre unMembre = new Membre();%>
-<%@ page import="controller.*" %>
 <html>
     <head>
         <title>Title</title>

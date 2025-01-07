@@ -1,0 +1,160 @@
+body {
+    background: #d6dee1;
+    font-family: montserrat, sans-serif;
+    font-weight: 400;
+    font-style: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: ubuntu, sans-serif;
+    font-weight: 100;
+    font-style: normal;
+    color: #0A1E38;
+    line-height: 1.5;
+}
+
+h1 {
+    font-size: calc(2.75rem + .6vw);
+}
+
+h3 {
+    font-size: 1.5rem;
+    margin-bottom: 60px;
+}
+
+h5 {
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: .5px;
+    margin: 0;
+    font-size: 1.1rem;
+}
+
+strong {
+    font-weight: 500;
+    font-size: inherit;
+}
+
+.main-header {
+    background-color: #C9ADA7;
+    /*color: white;*/
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo img {
+    width: 60px;
+    margin: 0px;
+    height: auto;
+    padding: 0px;
+}
+
+.main-nav {
+    text-align: center;
+}
+
+.main-nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center; /* Centrer horizontalement les éléments de la liste */
+}
+
+.main-nav li {
+    margin-top: 10px;
+    margin-right: 120px;
+}
+
+.bis-nav li {
+    margin-top: 0px;
+    margin-right: 35px;
+}
+
+.main-nav a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.main-nav a:hover {
+    color: #CFF2FF; /* couleur jaune pour le survol */
+}
+
+.log-content {
+    display: block;
+}
+
+.inscription-link {
+    display: inline-block;
+    padding: 12px 20px;
+    font-weight: 700;
+    color: #fff;
+    background: #9A8C98;
+    border-radius: 5px;
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.secondary-link {
+    display: inline-block;
+    padding: 10px 20px;
+    font-weight: 700;
+    color: #021E3A;
+    background: transparent;
+    border: 2px solid #021E3A;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-left: 15px; /* Ajustez l'espacement selon vos préférences */
+}
+
+.hero_wrapper{
+    height: 90vh;
+    min-height: 550px;
+    margin: auto;
+    padding: 0 8rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-size: 110%;
+    background-position: 40% 70%;
+    background-repeat: no-repeat;
+}
+
+#login {
+    width: 50%;
+    margin: auto;
+    text-align: center;
+}
+
+#login form {
+    text-align: left;
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+}
+
+input {
+    height: 30px;
+    margin-bottom: 10px;
+    font-size: 1.2em;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+}
+
+.submit {
+    font-family: 'Syne';
+    font-weight: 700;
+    color: white;
+    background-color: rgb(72, 106, 153);
+    margin: 2em auto;
+    width: 180px;
+    text-align: center;
+    border-radius: 60px;
+    border: 1px solid white;
+}
+
+table {
+    width: 60%;
+}
