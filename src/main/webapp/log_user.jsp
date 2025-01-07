@@ -24,8 +24,9 @@
         <nav class="main-nav">
             <ul>
                 <li><a href='log_user.jsp?page=1' class="nav-link">Accueil</a></li>
-                <li><a href='log_user.jsp?page=2' class="nav-link">Mes locations</a></li>
-                <li><a href='log_user.jsp?page=3' class="nav-link">Profil</a></li>
+                <li><a href='log_user.jsp?page=2' class="nav-link">Nos Offres</a></li>
+                <li><a href='log_user.jsp?page=3' class="nav-link">Mes locations</a></li>
+                <li><a href='log_user.jsp?page=4' class="nav-link">Profil</a></li>
                 <li><a href='main.jsp?page=1' class="nav-link">Deconnexion</a></li>
             </ul>
         </nav>
@@ -68,6 +69,8 @@
         }
         chaineBooks += "</table>";
         out.print(chaineBooks);
+    } else if (unePage == 2) {
+        %> <%@ include file="offres_log.jsp" %> <%
     }
     %>
     <% if (request.getParameter("action") != null) {

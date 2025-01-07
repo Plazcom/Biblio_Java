@@ -68,3 +68,6 @@ create table is_subscribe (
 
 insert into member values (null, "Admin","Lou_admin","admin@gmail.com","000000000","admin","admin","0", true);
 insert into book values (null, "Fire and Blood","300 ans avant les evenements du Trone de Fer...","https://m.media-amazon.com/images/I/81pa0QoG6ML._SL1500_.jpg", false, 10);
+insert into subscription values (null, "Simple", 15, 100);
+insert into subscription values (null, "Premium", 25, 200);
+insert into subscription values (null, "Legendaire", 40, 500);

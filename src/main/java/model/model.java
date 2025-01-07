@@ -275,4 +275,64 @@ public class model {
 		}
 		return unLoan;
 	}
+
+	// Subscription Part //
+	public static void insertSubscription (Subscription unSubscription) {
+		String req = "insert into subscription values ('"+unSubscription.getName()+"',"+unSubscription.getPrice()+","+unSubscription.getCredit()+");";
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			unStat.execute(req);
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+	}
+
+	public static  ArrayList<Subscription> selectAllSubscriptions () {
+		String req = "select * from subscription;";
+		ArrayList<Subscription> lesSubscriptions = new ArrayList<Subscription>();
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			ResultSet desRes = unStat.executeQuery(req);
+			while (desRes.next()) {
+				Subscription unSubscription = new Subscription(
+						desRes.getInt("idsubscription"),
+						desRes.getString("name"),
+						desRes.getInt("price"),
+						desRes.getInt("credit")
+				);
+				lesSubscriptions.add(unSubscription);
+			}
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+		return lesSubscriptions;
+	}
+	public static Subscription selectWhereSubscriptionWithId (int idsubscription) {
+		String req = "select * from subscription where idsubscription ="+idsubscription+";";
+		Subscription unSubscription = null;
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			ResultSet desRes = unStat.executeQuery(req);
+			if (desRes.next()) {
+				unSubscription = new Subscription(
+						desRes.getInt("idsubscription"),
+						desRes.getString("name"),
+						desRes.getInt("price"),
+						desRes.getInt("credit")
+				);
+			}
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+		return unSubscription;
+	}
 }
