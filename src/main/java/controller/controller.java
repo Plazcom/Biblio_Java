@@ -44,6 +44,12 @@ public class controller {
 	}
 	public static Loan selectWhereLoan (int idmember, int idbook) {
 		return model.selectWhereLoan(idmember, idbook);}
+	public static ArrayList<Loan> selectWhereLoanWithMemberId (int idmember) {
+		return model.selectWhereLoanWithMemberId(idmember);
+	}
+	public static void updateLoan (Loan unLoan) {
+		model.updateLoan(unLoan);
+	}
 
 	// Subscription Part //
 	public static void insertSubscription (Subscription unSubscription) {

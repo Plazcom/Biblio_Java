@@ -61,7 +61,9 @@
             chaineBooks += "<td>"+unBook.getPrice()+"</td>";
             if (controller.selectWhereLoan(id, unBook.getIdbook()) == null) {
                 chaineBooks += "<td> <a href= 'log_user.jsp?page=1&action=emprunter&idbook="+unBook.getIdbook()+"'> EMPRUNTER </a> </td>";
-            } else {
+            } else if (controller.selectWhereLoan(id, unBook.getIdbook()) != null && (controller.selectWhereLoan(id, unBook.getIdbook())).getIs_return()) {
+                chaineBooks += "<td> <a href= 'log_user.jsp?page=1&action=emprunter&idbook="+unBook.getIdbook()+"'> EMPRUNTER </a> </td>";
+            }  else {
                 chaineBooks += "<td> Vous avez emprunte ce livre </td>";
             }
             chaineBooks += "</tr>";
@@ -70,8 +72,10 @@
         out.print(chaineBooks);
     } else if (unePage == 2) {
         %> <%@ include file="offres_log.jsp" %> <%
+    } else if (unePage == 3) {
+%> <%@ include file="loan.jsp" %> <%
     } else if (unePage == 4) {
-%> <%@ include file="profil.jsp" %> <%
+    %> <%@ include file="profil.jsp" %> <%
     }
     %>
     <% if (request.getParameter("action") != null) {

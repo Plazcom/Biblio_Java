@@ -252,9 +252,21 @@ public class model {
 			System.out.println("Erreur d'execution : "+req);
 		}
 	}
+	public static void updateLoan (Loan unLoan) {
+		String req = "Update loan set is_return= "+unLoan.getIs_return()+"; ";
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			unStat.execute(req);
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+	}
 
 	public static Loan selectWhereLoan (int idmember, int idbook) {
-		String req = "select * from loan where idmember = "+idmember+" and idbook = "+idbook+";";
+		String req = "select * from loan where idmember = "+idmember+" and idbook = "+idbook+" order by loan_date desc limit 1;";
 		Loan unLoan = null;
 		try {
 			maConnexion.seConnecter();
@@ -274,6 +286,29 @@ public class model {
 			System.out.println("Erreur d'execution : "+req);
 		}
 		return unLoan;
+	}
+	public static ArrayList<Loan> selectWhereLoanWithMemberId (int idmember) {
+		String req = "select * from loan where idmember = "+idmember+";";
+		ArrayList<Loan> lesLoan = new ArrayList<Loan>();
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			ResultSet desRes = unStat.executeQuery(req);
+			while (desRes.next()) {
+				Loan unLoan = new Loan(
+						desRes.getInt("idmember"),
+						desRes.getInt("idbook"),
+						desRes.getString("loan_date"),
+						desRes.getBoolean("is_return")
+				);
+				lesLoan.add(unLoan);
+			}
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+		return lesLoan;
 	}
 
 	// Subscription Part //
