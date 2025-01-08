@@ -18,7 +18,7 @@
     for (Book unBook : lesBook) {
         chaineBooks += "<tr>";
         chaineBooks += "<td><img class='cover_img' src='"+unBook.getImage_url()+"' alt='"+unBook.getTitle()+"'></td>";
-        chaineBooks += "<td>"+unBook.getTitle()+"</td>";
+        chaineBooks += "<td><a href='main.jsp?page=4&id="+unBook.getIdbook()+"'>"+unBook.getTitle()+"</a></td>";
         chaineBooks += "<td>"+unBook.getFirst_sentence()+"</td>";
         chaineBooks += "<td>"+unBook.getPrice()+"</td>";
         chaineBooks += "</tr>";

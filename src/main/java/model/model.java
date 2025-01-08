@@ -449,4 +449,41 @@ public class model {
 		}
 		return unIs_subscribe;
 	}
+
+	// Content Part //
+	public static void insertCommit (Commit unCommit) {
+		String req = "insert into commit values ("+unCommit.getIdmember()+","+unCommit.getIdbook()+",'"+unCommit.getContent()+"');";
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			unStat.execute(req);
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+	}
+	public static ArrayList<Commit> selectWhereCommitWithBookId (int idbook) {
+		String req = "select * from commit where idbook = "+idbook+";";
+		ArrayList<Commit> lesCommit = new ArrayList<Commit>();
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			ResultSet desRes = unStat.executeQuery(req);
+			while (desRes.next()) {
+				Commit unCommit = new Commit(
+						desRes.getInt("idcommit"),
+						desRes.getInt("idmember"),
+						desRes.getInt("idbook"),
+						desRes.getString("content")
+				);
+				lesCommit.add(unCommit);
+			}
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+		return lesCommit;
+	}
 }

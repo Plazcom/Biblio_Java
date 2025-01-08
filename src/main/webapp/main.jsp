@@ -36,6 +36,7 @@
                         case 1 : %> <%@ include file="offres.jsp" %> <% break;
                         case 2 : %> <%@ include file="signin.jsp" %> <% break;
                         case 3 : %> <%@ include file="login.jsp" %> <% break;
+                        case 4 : %> <%@ include file="book.jsp" %> <% break;
                     }
                 } else {
                     %> <%@ include file="accueil.jsp" %> <%

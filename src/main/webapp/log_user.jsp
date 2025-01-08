@@ -56,7 +56,7 @@
         for (Book unBook : lesBook) {
             chaineBooks += "<tr>";
             chaineBooks += "<td><img class='cover_img' src='"+unBook.getImage_url()+"' alt='"+unBook.getTitle()+"'></td>";
-            chaineBooks += "<td>"+unBook.getTitle()+"</td>";
+            chaineBooks += "<td><a href='log_user.jsp?page=5&id="+unBook.getIdbook()+"'>"+unBook.getTitle()+"</a></td>";
             chaineBooks += "<td>"+unBook.getFirst_sentence()+"</td>";
             chaineBooks += "<td>"+unBook.getPrice()+"</td>";
             if (controller.selectWhereLoanWithBookId(unBook.getIdbook()) == null) {
@@ -76,6 +76,8 @@
 %> <%@ include file="loan.jsp" %> <%
     } else if (unePage == 4) {
     %> <%@ include file="profil.jsp" %> <%
+    } else if (unePage == 5) {
+%> <%@ include file="book.jsp" %> <%
     }
     %>
     <% if (request.getParameter("action") != null) {

@@ -73,4 +73,12 @@ public class controller {
 	}
 	public static Is_subscribe selectWhereIs_subscribe (int idmember, int idsubscription) {
 		return model.selectWhereIs_subscribe(idmember, idsubscription);}
+
+	// Commit Part //
+	public static void insertCommit (Commit unCommit) {
+		model.insertCommit(unCommit);
+	}
+	public static ArrayList<Commit> selectWhereCommitWithBookId (int idbook) {
+		return model.selectWhereCommitWithBookId(idbook);
+	}
 }
