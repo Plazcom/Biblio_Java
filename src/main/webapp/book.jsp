@@ -23,6 +23,19 @@
     chaineBook += "<td>"+unBook.getPrice()+"</td>";
     chaineBook += "</tr>";
     out.print(chaineBook);
+    ArrayList<Commit> lesCommit = controller.selectWhereCommitWithBookId(id_book);
+    String chaineCommit = "";
+    chaineCommit += "<h3>Commentaires</h3>";
+    chaineCommit += "<table border = '1'>";
+    chaineCommit += "<tr> <td> Nom </td> <td> Commentaire </td></tr>";
+    for (Commit unCommit : lesCommit) {
+        Membre user = controller.selectWhereMembreWithId(unCommit.getIdmember());
+        chaineCommit += "<tr>";
+        chaineCommit += "<td>"+user.getFirstname()+" "+user.getLastname()+"</td>";
+        chaineCommit += "<td>"+unCommit.getContent()+"</td>";
+        chaineCommit += "</tr>";
+    }
+    out.print(chaineCommit);
 %>
     </center>
 </body>

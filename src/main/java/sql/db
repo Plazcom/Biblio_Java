@@ -68,7 +68,7 @@ create table is_subscribe (
 );
 
 create table commit (
-    idcommit int not null,
+    idcommit int not null auto_increment,
     idmember int not null,
     idbook int not null,
     content varchar(5000),
@@ -82,3 +82,4 @@ insert into book values (null, "Fire and Blood","300 ans avant les evenements du
 insert into subscription values (null, "Simple", 15, 100);
 insert into subscription values (null, "Premium", 25, 200);
 insert into subscription values (null, "Legendaire", 40, 500);
+insert into commit values (null, 1, 1, "Un livre incroyable pour les fan de l'univers de GOT !");

@@ -452,7 +452,7 @@ public class model {
 
 	// Content Part //
 	public static void insertCommit (Commit unCommit) {
-		String req = "insert into commit values ("+unCommit.getIdmember()+","+unCommit.getIdbook()+",'"+unCommit.getContent()+"');";
+		String req = "insert into commit values (null, "+unCommit.getIdmember()+","+unCommit.getIdbook()+",'"+unCommit.getContent()+"');";
 		try {
 			maConnexion.seConnecter();
 			Statement unStat = maConnexion.getMaConnexion().createStatement();

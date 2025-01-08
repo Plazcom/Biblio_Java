@@ -78,6 +78,23 @@
     %> <%@ include file="profil.jsp" %> <%
     } else if (unePage == 5) {
 %> <%@ include file="book.jsp" %> <%
+        out.print(
+                "<form method='post' class='input'>" +
+                        "<table>" +
+                            "<tr> <td> Votre Commentaire </td>"+
+                            "<td> <input type='text' name='commit'></td> </tr>" +
+                        "</table>" +
+                "<tr> <td> </td>" +
+                        "<td> <input type='submit' name='Valider' value = 'Valider'> </td> </tr>"+
+                "</form>"
+        );
+        if (request.getParameter("Valider") != null) {
+            String commit = request.getParameter("commit");
+
+            Commit newCommit = new Commit(id, Integer.parseInt(request.getParameter("id")), commit);
+            controller.insertCommit(newCommit);
+            response.sendRedirect("log_user.jsp?page=5&id="+Integer.parseInt(request.getParameter("id")));
+        }
     }
     %>
     <% if (request.getParameter("action") != null) {
