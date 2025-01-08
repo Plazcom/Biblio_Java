@@ -59,12 +59,12 @@
             chaineBooks += "<td>"+unBook.getTitle()+"</td>";
             chaineBooks += "<td>"+unBook.getFirst_sentence()+"</td>";
             chaineBooks += "<td>"+unBook.getPrice()+"</td>";
-            if (controller.selectWhereLoan(id, unBook.getIdbook()) == null) {
+            if (controller.selectWhereLoanWithBookId(unBook.getIdbook()) == null) {
                 chaineBooks += "<td> <a href= 'log_user.jsp?page=1&action=emprunter&idbook="+unBook.getIdbook()+"'> EMPRUNTER </a> </td>";
-            } else if (controller.selectWhereLoan(id, unBook.getIdbook()) != null && (controller.selectWhereLoan(id, unBook.getIdbook())).getIs_return()) {
+            } else if (controller.selectWhereLoanWithBookId(unBook.getIdbook()) != null && (controller.selectWhereLoanWithBookId(unBook.getIdbook())).getIs_return()) {
                 chaineBooks += "<td> <a href= 'log_user.jsp?page=1&action=emprunter&idbook="+unBook.getIdbook()+"'> EMPRUNTER </a> </td>";
             }  else {
-                chaineBooks += "<td> Vous avez emprunte ce livre </td>";
+                chaineBooks += "<td> Ce livre est deja emprunte </td>";
             }
             chaineBooks += "</tr>";
         }

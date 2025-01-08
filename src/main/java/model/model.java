@@ -310,6 +310,28 @@ public class model {
 		}
 		return lesLoan;
 	}
+	public static Loan selectWhereLoanWithBookId (int idbook) {
+		String req = "select * from loan where idbook = "+idbook+" order by loan_date desc limit 1;";
+		Loan unLoan = null;
+		try {
+			maConnexion.seConnecter();
+			Statement unStat = maConnexion.getMaConnexion().createStatement();
+			ResultSet desRes = unStat.executeQuery(req);
+			if (desRes.next()) {
+				unLoan = new Loan(
+						desRes.getInt("idmember"),
+						desRes.getInt("idbook"),
+						desRes.getString("loan_date"),
+						desRes.getBoolean("is_return")
+				);
+			}
+			unStat.close();
+			maConnexion.seDeconnecter();
+		} catch (SQLException exp) {
+			System.out.println("Erreur d'execution : "+req);
+		}
+		return unLoan;
+	}
 
 	// Subscription Part //
 	public static void insertSubscription (Subscription unSubscription) {
